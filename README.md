@@ -36,5 +36,5 @@ Right now we have two main functions for this, a top-level simulation function w
 
 
 # Disclaimer
-By participating in this project Joe agrees to hand over all rights to the project, all future earnings resulting from this code, and 10% of his first child`s annual earnings to Nima and Brian.
+By participating in this project Joe agrees to hand over all rights to the project, all future earnings resulting from this code, and 10% of his first child's annual earnings to Nima and Brian.
 Effective Nov. 30, 2018
