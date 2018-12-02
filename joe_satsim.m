@@ -89,7 +89,7 @@ end
 utc_tstamps = datetime(T, 'ConvertFrom', 'juliandate', 'TimeZone', 'UTC');
 
 
-% Generate Viz Window Generator
+% Generate Viz Windows
 viz_window_table = viz_window_generator(R_ECI, utc_tstamps, 'fxb');
 disp('Viz Windows')
 disp(viz_window_table)
