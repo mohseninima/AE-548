@@ -3,7 +3,7 @@ function sim_cfg = sim_config()
     % Generates a simulation configuration used to specify propagation and
     % display flags and modes, and simulation parameters and tolerancing.
     %
-    % Author(s): Joseph Yates
+    % Author(s): Joseph Yates, Brian Ha
     % AEROSP 548 F18 Final Project: Ha, Mohseni, Yates
     %
     % Sources:
@@ -14,6 +14,12 @@ function sim_cfg = sim_config()
     sim_cfg.plot.rv_eci = true;       % Plot pos and vel vectors
     sim_cfg.plot.track_2d = false;    % Plot Earth surface track in 2D
     sim_cfg.plot.track_3d = true;     % Plot orbit around Earth in 3D
+    sim_cfg.plot.sc_angle = true;     % Plot sc angle relative to gs zenith
+    
+    % Plot Settings
+    sim_cfg.plot.titleFontSize = 16;
+    sim_cfg.plot.axisFontSize = 12;
+    sim_cfg.plot.legendFontSize = 12;
     
     % Propagation Perturbation Flags
     sim_cfg.pert.drag = false;            % Include air drag in dynamics

@@ -83,3 +83,14 @@ if sim_cfg.plot.track_3d
     ylabel('y_{ECI} [km]');
     zlabel('z_{ECI} [km]');
 end
+
+
+% Convert simulation time from Julian date to UTC datetime objects
+utc_tstamps = datetime(T, 'ConvertFrom', 'juliandate', 'TimeZone', 'UTC');
+
+
+% Generate Viz Windows
+viz_window_table = viz_window_generator(R_ECI, utc_tstamps, 'fxb');
+disp('Viz Windows')
+disp(viz_window_table)
+
