@@ -29,7 +29,7 @@ function sys_cfg = system_config()
     
     % Global Unit Conversions
     sys_cfg.deg_per_rad = 180/pi; % [deg/rad] degrees per radian
-    sys_cfg.km_per_AU = 149597870691; % [km] kilometers per AU
+    sys_cfg.km_per_AU = 149597870.691; % [km] kilometers per AU
     sys_cfg.rad_per_deg = pi/180; % [rad/deg] radians per degree
     sys_cfg.s_per_solar_day = 86400; % [s] seconds per solar day
     sys_cfg.s_per_sidereal_day = 86164; % [s] seconds per sidereal day

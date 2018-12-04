@@ -4,17 +4,18 @@ function Rm_ECI = get_moon_position_simple(t,sys_cfg,sim_cfg)
     % position of the moon at the current epoch.
     %
     % Inputs:
-    %     t   JD epoch [day]
+    %     t       JD epoch [day]
     %     sys_cfg celestial body system configuration struct
     %     sim_cfg simulation configuration struct
     %
     % Outputs:
-    %     Rm_ECI  force exerted by zonal harmonic perturbations [kN/kg]
+    %     Rm_ECI  position of moon w.r.t. Earth center (ECI) [km]
     %
     % Author(s): Joseph Yates
     % AEROSP 548 F18 Final Project: Ha, Mohseni, Yates
     %
-    % Sources: https://ssd.jpl.nasa.gov/horizons.cgi
+    % Sources:
+    % "JPL Horizons" https://ssd.jpl.nasa.gov/horizons.cgi
     
     % Setup Initial conditions from JPL Horizons ephemerides
     t0 = 2458119.500000000; % [day], JD
