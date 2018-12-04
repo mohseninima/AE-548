@@ -1,4 +1,19 @@
 function zonal_harmonics_symbolic()
+    % zonal_harmonics_symbolic.m
+    % Symbolic solver for Earth gravity potential with zonal harmonics, as
+    % well as the resulting accelerations expressed component-wise with
+    % Cartesian components.
+    %
+    % Author(s): Joseph Yates
+    % AEROSP 548 F18 Final Project: Ha, Mohseni, Yates
+    %
+    % Sources:
+    % AEROSP 548 Lecture Slides
+    % "Legendre polynomials"
+    %     https://en.wikipedia.org/wiki/Legendre_polynomials
+    % "Perturbed Motion"
+    %     https://gssc.esa.int/navipedia/index.php/Perturbed_Motion
+    
     % Set up constants
     mu = sym('mu');
     Re = sym('Re');
