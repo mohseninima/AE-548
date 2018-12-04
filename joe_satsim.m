@@ -29,6 +29,7 @@ init_cond = tle_to_init_cond(tle,sim_cfg,sys_cfg);
 [T, R_ECI, V_ECI] = simulation(init_cond,sc_cfg,sys_cfg,sim_cfg);
 
 % Generate plots
+data_length = length(T);
 Tplot = T - init_cond.JD0;
 epoch = num2str(init_cond.MJD0);
 % Position and Velocity ECI Frame Plots
@@ -69,6 +70,45 @@ if sim_cfg.plot.rv_eci
     xlabel('Time [day]');
     ylabel('r - R_E [km]');
 end
+
+% Keplerian Orbital Elements Plots
+if sim_cfg.plot.kepler_oe
+    A = zeros(data_length,6);
+    for i = 1:data_length
+        [A(i,1),A(i,2),A3,A4,A5,A6] = rveci2coe(R_ECI(i,:),V_ECI(i,:), ...
+                                                sys_cfg.earth.mu);
+        A(i,3) = A3 * sys_cfg.deg_per_rad;
+        A(i,4) = A4 * sys_cfg.deg_per_rad;
+        A(i,5) = A5 * sys_cfg.deg_per_rad;
+        A(i,6) = A6 * sys_cfg.deg_per_rad;
+    end
+    
+    figure(15)
+    ax(1) = subplot(3,2,1);
+    plot(Tplot,A(:,1));
+    title(['Orbital Elements of ' tle.sat_num ' since MJD' epoch]);
+    ylabel('a [km]');
+    ax(2) = subplot(3,2,2);
+    plot(Tplot,A(:,2));
+    % title(['Orbital Elements of ' tle.sat_num ' since MJD' epoch]);
+    ylabel('e');
+    ax(3) = subplot(3,2,3);
+    plot(Tplot,A(:,3));
+    ylabel('i [deg]');
+    ax(4) = subplot(3,2,4);
+    plot(Tplot,A(:,4));
+    ylabel('\Omega [deg]');
+    ax(5) = subplot(3,2,5);
+    plot(Tplot,A(:,5));
+    ylabel('\omega [deg]');
+    xlabel('Time [day]');
+    ax(6) = subplot(3,2,6);
+    plot(Tplot,A(:,6));
+    ylabel('\theta [deg]');
+    xlabel('Time [day]');
+    linkaxes(ax,'x');
+end
+
 % 3D Orbital Track Plot
 if sim_cfg.plot.track_3d
     [XE, YE, ZE] = sphere(30); % Build reference sphere for Earth's surface

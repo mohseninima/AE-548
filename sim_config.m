@@ -9,12 +9,12 @@ function sim_cfg = sim_config()
     % Sources:
     
     % Plotting Flags
-    sim_cfg.plot.kepler_oe = false;   % Plot orbital elements
+    sim_cfg.plot.kepler_oe = true;   % Plot orbital elements
     sim_cfg.plot.pert_forces = false; % Plot perturbation forces
     sim_cfg.plot.rv_eci = true;       % Plot pos and vel vectors
+    sim_cfg.plot.sc_angle = true;     % Plot sc angle relative to gs zenith
     sim_cfg.plot.track_2d = false;    % Plot Earth surface track in 2D
     sim_cfg.plot.track_3d = true;     % Plot orbit around Earth in 3D
-    sim_cfg.plot.sc_angle = true;     % Plot sc angle relative to gs zenith
     
     % Plot Settings
     sim_cfg.plot.titleFontSize = 16;
