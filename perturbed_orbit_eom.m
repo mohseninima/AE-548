@@ -31,10 +31,15 @@ function Xdot = perturbed_orbit_eom(t,X,sc_cfg,sys_cfg,sim_cfg)
     a_2bp = -sys_cfg.earth.mu/r^3 * R;
     
     % Perturbing Forces ===================================================
+    % Sun ECI Position Calculation - Used in Air Drag, Sun 3BA, and SRP.
+    if (sim_cfg.pert.drag || sim_cfg.pert.sun_3ba || sim_cfg.pert.srp)
+        Rs = get_sun_position_simple(tJD,sys_cfg,sim_cfg);
+    end
+    
     % Air Drag
     a_drag = [0 0 0]';
     if sim_cfg.pert.drag
-        a_drag = [0 0 0]';
+        a_drag = get_drag_pert_force_hp(R,V,Rs,sc_cfg,sys_cfg);
     end
     
     % Moon 3rd-Body Acceleration
@@ -43,11 +48,6 @@ function Xdot = perturbed_orbit_eom(t,X,sc_cfg,sys_cfg,sim_cfg)
         % Moon ECI Position Calculation
         Rm = get_moon_position_simple(tJD,sys_cfg,sim_cfg);
         a_m3ba = get_moon_pert_force(R,Rm,sys_cfg.moon);
-    end
-    
-    % Sun ECI Position Calculation - Used in either/both Sun 3BA and SRP.
-    if (sim_cfg.pert.sun_3ba || sim_cfg.pert.srp)
-        Rs = get_sun_position_simple(tJD,sys_cfg,sim_cfg);
     end
     
     % Sun 3rd-Body Acceleration

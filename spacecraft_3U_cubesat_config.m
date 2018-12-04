@@ -20,10 +20,15 @@ function cs_cfg = spacecraft_3U_cubesat_config()
     % Note that higher-fidelity modeling for drag and SRP has not been
     % implemented because s/c attitude is not being tracked in this
     % simulation.
+    
     % For air drag, a ram pointing configuration is assumed
     cs_cfg.Ad = 0.012; % [m^2] average air drag cross-sectional area of s/c
     cs_cfg.Cd = 2.2; % [] coefficient of drag
     cs_cfg.B = cs_cfg.m/(cs_cfg.Ad*cs_cfg.Cd); % [kg/m^2] ballistic coeff
+    cs_cfg.n_hp = 5.6; % [] Harris-Priester Drag Model calibratable
+                       % component, takes values 2-6 for low-incl. to
+                       % high-incl. orbits
+    
     % For SRP, a ram pointing configuration in a roughly circular and
     % equatorial Earth orbit is assumed. Because the side of the spacecraft
     % will sometimes face the Sun instead of the front/back, this area

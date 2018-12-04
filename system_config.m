@@ -42,6 +42,7 @@ function sys_cfg = system_config()
     earth.R = 6371; % [km] Earth average radius
     earth.R_equat = 6378.1; % [km] Earth equatorial radius
     earth.R_polar = 6356.8; % [km] Earth polar radius
+    earth.rot_axis = [0 0 1]'; % [] Earth rotation axis unit vector, ECI frm
     earth.omega_e = 0.7292e-4; % [rad/s] Earth rotational speed
     earth.SRP = 4.56e-6; % [N/m^2] Approx. SRP near Earth/at 1 AU from Sun
     
