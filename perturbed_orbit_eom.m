@@ -34,39 +34,39 @@ function Xdot = perturbed_orbit_eom(t,X,sc_cfg,sys_cfg,sim_cfg)
     % Air Drag
     a_drag = [0 0 0]';
     if sim_cfg.pert.drag
-       a_drag = [0 0 0]';
+        a_drag = [0 0 0]';
     end
     
     % Moon 3rd-Body Acceleration
     a_m3ba = [0 0 0]';
     if sim_cfg.pert.moon_3ba
-       % Moon ECI Position Calculation
-       Rm = get_moon_position_simple(tJD,sys_cfg,sim_cfg);
-       a_m3ba = get_moon_pert_force(R,Rm,sys_cfg.moon);
+        % Moon ECI Position Calculation
+        Rm = get_moon_position_simple(tJD,sys_cfg,sim_cfg);
+        a_m3ba = get_moon_pert_force(R,Rm,sys_cfg.moon);
     end
     
     % Sun ECI Position Calculation - Used in either/both Sun 3BA and SRP.
     if (sim_cfg.pert.sun_3ba || sim_cfg.pert.srp)
-        Rs = [1 1 1]';
-        eclipse = false;
+        Rs = get_sun_position_simple(tJD,sys_cfg,sim_cfg);
     end
     
     % Sun 3rd-Body Acceleration
     a_s3ba = [0 0 0]';
     if sim_cfg.pert.sun_3ba
-       a_s3ba = [0 0 0]';
+        a_s3ba = get_sun_pert_force(R,Rs,sys_cfg.sun);
     end
     
     % Solar Radiation Pressure
     a_srp = [0 0 0]';
     if sim_cfg.pert.srp
-       a_srp = [0 0 0]';
+        eclipse = check_if_sc_in_eclipse(R,Rs,sys_cfg);
+        a_srp = get_srp_pert_force(R,Rs,eclipse,sc_cfg,sys_cfg);
     end
     
     % Zonal Harmonics (J2, J3, ... , J8)
     a_zh = [0 0 0]';
     if sim_cfg.pert.zonal_harmonics
-       a_zh = get_zonal_harmonic_pert_force(R,sys_cfg.earth);
+        a_zh = get_zonal_harmonic_pert_force(R,sys_cfg.earth);
     end
     
     % EOM Setup ===========================================================

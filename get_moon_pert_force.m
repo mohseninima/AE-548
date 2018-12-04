@@ -1,7 +1,7 @@
 function f_pert = get_moon_pert_force(R,D,m_cfg)
     % get_moon_pert_force.m
-    % Using JPL ephemeris from 00:00:00.0 01/01/18, calculate the ECI frame
-    % position of the moon at the current epoch.
+    % Using the current positions of the spacecraft and the Moon in the ECI
+    % frame, determine the perturbing force exerted by the Moon's gravity.
     %
     % Inputs:
     %     R       s/c ECI frame position [km]
