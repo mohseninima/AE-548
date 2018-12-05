@@ -26,7 +26,7 @@ sim_cfg = sim_config();
 init_cond = tle_to_init_cond(tle,sim_cfg,sys_cfg);
 
 % Check if aerospace toolbox is installed and swap drag models if needed
-if ~license('test', 'image_toolbox')
+if ~license('test', 'aerospace_toolbox')
     disp('You don''t have the aerospace toolbox so the NRLMSISE-00 model is unavailable.')
     disp('Defaulting to the Harris-Priester model')
     sim_cfg.pert.drag = true;             % Include air drag in dynamics
