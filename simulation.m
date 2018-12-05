@@ -31,7 +31,7 @@ function [T, R_ECI, V_ECI] = simulation(init_cond,sc_cfg,sys_cfg,sim_cfg)
                      'RelTol',sim_cfg.tol.ode45_rel);
                  
     % Run simulation
-    [Ts, X_ECI] = ode45(@perturbed_orbit_eom,tspan,X0_ECI,options, ...
+    [Ts, X_ECI] = ode113(@perturbed_orbit_eom,tspan,X0_ECI,options, ...
                        sc_cfg,sys_cfg,sim_cfg);
     
     % Convert time back to days since calcs are complete
