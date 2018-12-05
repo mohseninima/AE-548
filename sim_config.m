@@ -22,7 +22,8 @@ function sim_cfg = sim_config()
     sim_cfg.plot.legendFontSize = 12;
     
     % Propagation Perturbation Flags
-    sim_cfg.pert.drag = true;            % Include air drag in dynamics
+    sim_cfg.pert.drag = false;           % Include air drag in dynamics
+    sim_cfg.pert.drag_adv = true;        % Include NRLMSISE-00 air drag in dynamics
     sim_cfg.pert.moon_3ba = true;        % Include moon grav. in dynamics
     sim_cfg.pert.srp = true;             % Include SRP in dynamics
     sim_cfg.pert.sun_3ba = true;         % Include sun grav. in dynamics

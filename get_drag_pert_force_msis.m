@@ -53,7 +53,7 @@ function f_pert = get_drag_pert_force_msis(R,V,sc_cfg,sys_cfg,tJD)
     %Temporary values for F107 %taken from http://lasp.colorado.edu/lisird/data/noaa_radio_flux/
     f107Daily = 68;
     f107Average = 70.47901235;
-    magneticIndex = 4; %need to get this right
+    magneticIndex = 10; %need to get this right
     
     % Calculate density with NRLMSISE-00 model
     [Tall, rhoall] = atmosnrlmsise00(altitude, latitude, longitude, year, dayOfYear, UTseconds, f107Average, f107Daily, magneticIndex);
