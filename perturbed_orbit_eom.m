@@ -39,7 +39,8 @@ function Xdot = perturbed_orbit_eom(t,X,sc_cfg,sys_cfg,sim_cfg)
     % Air Drag
     a_drag = [0 0 0]';
     if sim_cfg.pert.drag
-        a_drag = get_drag_pert_force_hp(R,V,Rs,sc_cfg,sys_cfg);
+        %a_drag = get_drag_pert_force_hp(R,V,Rs,sc_cfg,sys_cfg);
+        a_drag = get_drag_pert_force_msis(R,V,sc_cfg,sys_cfg,tJD);
     end
     
     % Moon 3rd-Body Acceleration
