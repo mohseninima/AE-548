@@ -70,7 +70,10 @@ if sim_cfg.plot.rv_eci
     xlabel('Time [day]');
     linkaxes(ax,'x');
     
-    R = vecnorm(R_ECI,2,2); % position magnitude [km]
+    for i = 1:length(R_ECI)
+        R(i) = norm(R_ECI,2);
+    end
+    %R = vecnorm(R_ECI,2,2); % position magnitude [km]
     Alt = R - sys_cfg.earth.R;
     figure(13)
     plot(Tplot,Alt);
