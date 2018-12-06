@@ -23,11 +23,11 @@ function sim_cfg = sim_config()
     
     % Propagation Perturbation Flags
     sim_cfg.pert.drag = false;           % Include air drag in dynamics
-    sim_cfg.pert.drag_adv = true;        % Include NRLMSISE-00 air drag in dynamics
-    sim_cfg.pert.moon_3ba = true;        % Include moon grav. in dynamics
-    sim_cfg.pert.srp = true;             % Include SRP in dynamics
-    sim_cfg.pert.sun_3ba = true;         % Include sun grav. in dynamics
-    sim_cfg.pert.zonal_harmonics = true; % Include zonal harmonics in dyn.
+    sim_cfg.pert.drag_adv = false;        % Include NRLMSISE-00 air drag in dynamics
+    sim_cfg.pert.moon_3ba = false;        % Include moon grav. in dynamics
+    sim_cfg.pert.srp = false;             % Include SRP in dynamics
+    sim_cfg.pert.sun_3ba = false;         % Include sun grav. in dynamics
+    sim_cfg.pert.zonal_harmonics = false; % Include zonal harmonics in dyn.
     
     % Timing Constants
     sim_cfg.time.length = 2;  % [days] Length of simulation
