@@ -5,16 +5,16 @@ close all;
 %% Hard-coded TLE: replace with TLE parser ================================
 tle.sat_num = '40379';
 tle.epoch_year = 18;
-tle.epoch_day = 333.50532158;
-tle.ndo2 = .00001566;
+tle.epoch_day = 334.09980871; %333.50532158;
+tle.ndo2 = .00001627; %.00001566;
 tle.nddo6 = 00000e0;
-tle.Bstar = 71119e-4;
-tle.i_deg = 99.0880;
-tle.Om_deg = 263.3887;
-tle.e = .0138035;
-tle.om_deg = 55.7924;
-tle.M_deg = 305.6296;
-tle.n_rev_per_day = 15.14814963;
+tle.Bstar = 73693-4; %71119e-4;
+tle.i_deg = 99.0881; %99.0880;
+tle.Om_deg = 264.0985; %263.3887;
+tle.e = .0138014; %.0138035;
+tle.om_deg = 53.8357; %55.7924;
+tle.M_deg = 307.5546; %305.6296;
+tle.n_rev_per_day = 15.14817118; %15.14814963;
 
 %% Build and Run Simulation ===============================================
 % Create spacecraft, system, and simulation config structs from generation
