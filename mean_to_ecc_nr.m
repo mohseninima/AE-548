@@ -23,7 +23,7 @@ function [phi, iter] = mean_to_ecc_nr(M,e,rel_tol)
     if nargin < 3
         rel_tol = 1e-12;
     end
-    
+
     % Set initial guess
     if ((M > pi) || ((-pi < M) && (M < 0)))
         phi = M - e;

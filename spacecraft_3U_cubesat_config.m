@@ -33,7 +33,7 @@ function cs_cfg = spacecraft_3U_cubesat_config()
     % equatorial Earth orbit is assumed. Because the side of the spacecraft
     % will sometimes face the Sun instead of the front/back, this area
     % number is larger.
-    cs_cfg.As = 0.024; % [m^2] average SRP corss-sectional area of s/c
+    cs_cfg.As = 0.024; % [m^2] average SRP cross-sectional area of s/c
     cs_cfg.ep = 0.5; % [] reflectivity constant, estimated from slides,
                    %     roughly equal to .1*.9+.3*.95+.6*.21.
     cs_cfg.CR = 1 + cs_cfg.ep; % [] radiation pressure coefficient

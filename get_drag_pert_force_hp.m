@@ -40,7 +40,7 @@ function f_pert = get_drag_pert_force_hp(R,V,Rs,sc_cfg,sys_cfg)
     Omega_e = sys_cfg.earth.omega_e * sys_cfg.earth.rot_axis; % [rad/s]
     Vr = V - cross(Omega_e,R); % [km/s]
     vr = norm(Vr); % [km/s]
-    Ad = sc_cfg.Ad /1e6; % [km^2], change units of cross-sectional area
+    Ad = sc_cfg.Ad / 1e6; % [km^2], change units of cross-sectional area
     F_pert = -0.5*sc_cfg.Cd*Ad*rho*vr^2*(Vr/vr); % [kN]
     % Normalize force by spacecraft mass
     f_pert = F_pert / sc_cfg.m; % [kN/kg]

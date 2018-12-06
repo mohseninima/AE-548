@@ -1,8 +1,8 @@
-% Housekeeping
+%% Housekeeping ===========================================================
 clear all;
 close all;
 
-% Hard-coded TLE: replace with TLE parser
+%% Hard-coded TLE: replace with TLE parser ================================
 tle.sat_num = '40379';
 tle.epoch_year = 18;
 tle.epoch_day = 333.50532158;
@@ -16,6 +16,7 @@ tle.om_deg = 55.7924;
 tle.M_deg = 305.6296;
 tle.n_rev_per_day = 15.14814963;
 
+%% Build and Run Simulation ===============================================
 % Create spacecraft, system, and simulation config structs from generation
 % scripts
 sc_cfg = spacecraft_3U_cubesat_config();
@@ -35,8 +36,10 @@ end
 
 % Run simulation (Output: [days] [km] [km/s])
 [T, R_ECI, V_ECI] = simulation(init_cond,sc_cfg,sys_cfg,sim_cfg);
+% This also creates `force_data` [kN/kg] as a byproduct, which we can use
+% beyond this point.
 
-% Generate plots
+%% Generate Propagator Plots ==============================================
 data_length = length(T);
 Tplot = T - init_cond.JD0;
 epoch = num2str(init_cond.MJD0);
@@ -135,13 +138,16 @@ if sim_cfg.plot.track_3d
     zlabel('z_{ECI} [km]');
 end
 
+% Force plotting
+if sim_cfg.plot.pert_forces
+    plot_pert_forces(Tplot,force_data,tle.sat_num,epoch,sim_cfg);
+end
 
+%% Viz Windows ============================================================
 % Convert simulation time from Julian date to UTC datetime objects
 utc_tstamps = datetime(T, 'ConvertFrom', 'juliandate', 'TimeZone', 'UTC');
-
 
 % Generate Viz Windows
 viz_window_table = viz_window_generator(R_ECI, utc_tstamps, 'fxb');
 disp('Viz Windows')
 disp(viz_window_table)
-

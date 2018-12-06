@@ -14,6 +14,11 @@ function [T, R_ECI, V_ECI] = simulation(init_cond,sc_cfg,sys_cfg,sim_cfg)
     %     R_ECI       ECI-frame position vector array [km]
     %     V_ECI       ECI-frame velocity vector array [km/s]
     %
+    % Byproducts:
+    %     force_data  Persistent struct that contains arrays of central and
+    %                 perturbing forces acting on the spacecraft, resolved
+    %                 in the ECI frame [kN/kg]
+    %
     % Author(s): Joseph Yates
     % AEROSP 548 F18 Final Project: Ha, Mohseni, Yates
     %
@@ -27,9 +32,10 @@ function [T, R_ECI, V_ECI] = simulation(init_cond,sc_cfg,sys_cfg,sim_cfg)
     
     % Setup simulation initial conditions and options
     X0_ECI = [init_cond.R_ECI;init_cond.V_ECI];
-    options = odeset('AbsTol',sim_cfg.tol.ode45_abs, ...
+    options = odeset('OutputFcn',@force_save, ...
+                     'AbsTol',sim_cfg.tol.ode45_abs, ...
                      'RelTol',sim_cfg.tol.ode45_rel);
-                 
+    
     % Run simulation
     [Ts, X_ECI] = ode113(@perturbed_orbit_eom,tspan,X0_ECI,options, ...
                        sc_cfg,sys_cfg,sim_cfg);
