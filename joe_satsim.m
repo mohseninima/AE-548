@@ -73,11 +73,12 @@ if sim_cfg.plot.rv_eci
     xlabel('Time [day]');
     linkaxes(ax,'x');
     
-    for i = 1:length(R_ECI)
-        R(i) = norm(R_ECI,2);
+    Alt = zeros(data_length,1);
+    for i = 1:data_length
+        Alt(i) = norm(R_ECI(i,:),2) - sys_cfg.earth.R;
     end
     %R = vecnorm(R_ECI,2,2); % position magnitude [km]
-    Alt = R - sys_cfg.earth.R;
+%     Alt = R - sys_cfg.earth.R;
     figure(13)
     plot(Tplot,Alt);
     title(['Altitude of ' tle.sat_num ' since MJD' epoch]);
@@ -85,48 +86,15 @@ if sim_cfg.plot.rv_eci
     ylabel('r - R_E [km]');
 end
 
-% Keplerian Orbital Elements Plots
+% Keplerian Orbital Elements Plot
 if sim_cfg.plot.kepler_oe
-    A = zeros(data_length,6);
-    for i = 1:data_length
-        [A(i,1),A(i,2),A3,A4,A5,A6] = rveci2coe(R_ECI(i,:),V_ECI(i,:), ...
-                                                sys_cfg.earth.mu);
-        A(i,3) = A3 * sys_cfg.deg_per_rad;
-        A(i,4) = A4 * sys_cfg.deg_per_rad;
-        A(i,5) = A5 * sys_cfg.deg_per_rad;
-        A(i,6) = A6 * sys_cfg.deg_per_rad;
-    end
-    
-    figure(15)
-    ax(1) = subplot(3,2,1);
-    plot(Tplot,A(:,1));
-    title(['Orbital Elements of ' tle.sat_num ' since MJD' epoch]);
-    ylabel('a [km]');
-    ax(2) = subplot(3,2,2);
-    plot(Tplot,A(:,2));
-    % title(['Orbital Elements of ' tle.sat_num ' since MJD' epoch]);
-    ylabel('e');
-    ax(3) = subplot(3,2,3);
-    plot(Tplot,A(:,3));
-    ylabel('i [deg]');
-    ax(4) = subplot(3,2,4);
-    plot(Tplot,A(:,4));
-    ylabel('\Omega [deg]');
-    ax(5) = subplot(3,2,5);
-    plot(Tplot,A(:,5));
-    ylabel('\omega [deg]');
-    xlabel('Time [day]');
-    ax(6) = subplot(3,2,6);
-    plot(Tplot,A(:,6));
-    ylabel('\theta [deg]');
-    xlabel('Time [day]');
-    linkaxes(ax,'x');
+    plot_kepler_oe(Tplot,R_ECI,V_ECI,tle.sat_num,epoch,sys_cfg,sim_cfg)
 end
 
 % 3D Orbital Track Plot
 if sim_cfg.plot.track_3d
     [XE, YE, ZE] = sphere(30); % Build reference sphere for Earth's surface
-    figure(21)
+    figure(31)
     plot3(R_ECI(:,1),R_ECI(:,2),R_ECI(:,3),'-r');
     hold on;
     surf(XE*sys_cfg.earth.R, YE*sys_cfg.earth.R, ZE*sys_cfg.earth.R);
@@ -136,6 +104,7 @@ if sim_cfg.plot.track_3d
     xlabel('x_{ECI} [km]');
     ylabel('y_{ECI} [km]');
     zlabel('z_{ECI} [km]');
+    axis square
 end
 
 % Force plotting

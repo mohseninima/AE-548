@@ -12,7 +12,7 @@ function gs_cfg = gs_config(ground_station)
     % * ECEF Cartesian Position Vector: 548 Module II Notes, Slide 172
     
     
-    VALID_GROUND_STATIONS = ["fxb"]; % <-- Need to use double quotes.
+    VALID_GROUND_STATIONS = [string('fxb')]; % <-- Need to use double quotes.
     
     
     % Ground Station at the UMich FXB Building
