@@ -12,6 +12,9 @@ function viz_window_table = viz_window_generator(r_sc_vectors, times, gs)
     % Outputs:
     %   viz_window_table : MATLAB table of spacecraft visibility windows.
     %
+    % Byproducts:
+    %   Figure 51 : Plot of sc angle relative to the ground station zenith
+    %
     % Author(s): Brian Ha
     % AEROSP 548 F18 Final Project: Ha, Mohseni, Yates
     %
@@ -61,7 +64,7 @@ function viz_window_table = viz_window_generator(r_sc_vectors, times, gs)
     
     % Plot the spacecraft angle relative to the ground station zenith
     if sim_cfg.plot.sc_angle == true
-        figure(31)
+        figure(51)
         plot(times, sc_angles)
         hold on
         plot(times, cone_half_angle*ones(1,length(times)), 'r--')
