@@ -1,6 +1,6 @@
 function f_pert = get_drag_pert_force_msis(R,V,sc_cfg,sys_cfg,tJD)
     % get_drag_pert_force_msis.m
-    % Calculate the density using the 2001 United States Naval Research Laboratory 
+    % Calculate the drag using the 2001 United States Naval Research Laboratory 
     % Mass Spectrometer and Incoherent Scatter Radar Exosphere (NRLMSISE-00)
     %
     % Inputs:
@@ -45,7 +45,7 @@ function f_pert = get_drag_pert_force_msis(R,V,sc_cfg,sys_cfg,tJD)
     % Find first day of the year in julian time
     JD_startofyear = juliandate(datetime(str2double(strcat(num2str(2018),'0101')),'convertfrom','yyyymmdd'));
     % Find days since new year
-    dayOfYear = floor(tJD - JD_startofyear);
+    dayOfYear = mod(floor(tJD - JD_startofyear),365); %need to take into account the new year
     % Find the time since the day started in seconds
     UTseconds = (tJD - JD_startofyear - dayOfYear)*24*60*60;
     
@@ -58,7 +58,7 @@ function f_pert = get_drag_pert_force_msis(R,V,sc_cfg,sys_cfg,tJD)
     % Calculate density with NRLMSISE-00 model
     [Tall, rhoall] = atmosnrlmsise00(altitude, latitude, longitude, year, dayOfYear, UTseconds, f107Average, f107Daily, magneticIndex);
     
-    rho = rhoall(6);
+    rho = rhoall(6)*1000^3;
     
     % Calculate relative velocity (to air) and drag force
     Omega_e = sys_cfg.earth.omega_e * sys_cfg.earth.rot_axis; % [rad/s]
