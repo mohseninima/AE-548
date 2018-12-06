@@ -83,7 +83,7 @@ function viz_window_table = viz_window_generator(r_sc_vectors, times, gs)
     % Check if the spacecraft sim starts out in the comm cone. If so, the
     % beginning of the viz window is assumed to be unknown.
     if in_cone_bool_list(1) == true
-        Start_Time = [Start_Time; "unknown"];
+        Start_Time = [Start_Time; string('unknown')];
     end
     
     
@@ -111,18 +111,18 @@ function viz_window_table = viz_window_generator(r_sc_vectors, times, gs)
     % Check if the spacecraft sim ends in the comm cone. If so, the
     % end of the viz window is assumed to be unknown.
     if in_cone_bool_list(end) == true
-        End_Time = [End_Time; "unknown"];
+        End_Time = [End_Time; string('unknown')];
     end
     
     
     % Calculate the duration of each fully defined viz window
     for k = 1:length(Start_Time)
         
-        if ~strcmp(string(Start_Time(k)), "unknown") && ...
-                ~strcmp(string(End_Time(k)), "unknown")
+        if ~strcmp(string(Start_Time(k)), string('unknown')) && ...
+                ~strcmp(string(End_Time(k)), string('unknown'))
             duration = datetime(End_Time(k)) - datetime(Start_Time(k));
         else
-            duration = "unknown";
+            duration = string('unknown');
         end
         
         Duration = [Duration; string(duration)];
