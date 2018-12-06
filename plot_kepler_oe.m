@@ -41,7 +41,7 @@ function plot_kepler_oe(T,R,V,name,epoch,sys_cfg,sim_cfg)
     figure(21)
     ax(1) = subplot(3,2,1);
     plot(T,A(:,1));
-    title(['Orbital Elements of ' name ' since MJD' epoch], ...
+    title(['Orbital Elements of ' name ' since ' epoch], ...
         'fontsize',sim_cfg.plot.titleFontSize);
     ylabel('a [km]','fontSize',sim_cfg.plot.axisFontSize);
     ax(2) = subplot(3,2,2);
@@ -58,11 +58,11 @@ function plot_kepler_oe(T,R,V,name,epoch,sys_cfg,sim_cfg)
     ax(5) = subplot(3,2,5);
     plot(T,A(:,5));
     ylabel('\omega [deg]','fontSize',sim_cfg.plot.axisFontSize);
-    xlabel('Time [day]','fontSize',sim_cfg.plot.axisFontSize);
+    xlabel('Time (UTC)','fontSize',sim_cfg.plot.axisFontSize);
     ax(6) = subplot(3,2,6);
     plot(T,A(:,6));
     ylabel('\theta [deg]','fontSize',sim_cfg.plot.axisFontSize);
-    xlabel('Time [day]','fontSize',sim_cfg.plot.axisFontSize);
+    xlabel('Time (UTC)','fontSize',sim_cfg.plot.axisFontSize);
     linkaxes(ax,'x');
     set(findall(gcf,'type','line'),'linewidth',2)
 end

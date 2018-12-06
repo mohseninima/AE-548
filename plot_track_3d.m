@@ -31,7 +31,7 @@ function plot_track_3d(R,name,epoch,sys_cfg,sim_cfg)
     surf(XE*sys_cfg.earth.R, YE*sys_cfg.earth.R, ZE*sys_cfg.earth.R);
     hold off;
     axis square
-    title(['Orbital Trajectory of ' name ' since MJD' epoch], ...
+    title(['Orbital Trajectory of ' name ' since ' epoch], ...
         'fontsize',sim_cfg.plot.titleFontSize);
     xlabel('x_{ECI} [km]','fontSize',sim_cfg.plot.axisFontSize);
     ylabel('y_{ECI} [km]','fontSize',sim_cfg.plot.axisFontSize);

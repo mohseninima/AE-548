@@ -27,7 +27,7 @@ function plot_pert_forces(T,fd,name,epoch,sim_cfg)
     figure(41)
     ax(1) = subplot(3,2,1);
     plot(T,fd.a_2bp(:,1),T,fd.a_2bp(:,2),T,fd.a_2bp(:,3));
-    title(['Force Vectors Acting On ' name ' since MJD' epoch], ...
+    title(['Force Vectors Acting On ' name ' since ' epoch], ...
         'fontsize', sim_cfg.plot.titleFontSize);
     ylabel('F_{central} [kN/kg]', 'fontSize', sim_cfg.plot.axisFontSize);
     ax(2) = subplot(3,2,2);
@@ -44,11 +44,11 @@ function plot_pert_forces(T,fd,name,epoch,sim_cfg)
     ax(5) = subplot(3,2,5);
     plot(T,fd.a_srp(:,1),T,fd.a_srp(:,2),T,fd.a_srp(:,3));
     ylabel('F_{srp} [kN/kg]', 'fontSize', sim_cfg.plot.axisFontSize);
-    xlabel('Time [day]', 'fontSize', sim_cfg.plot.axisFontSize);
+    xlabel('Time (UTC)', 'fontSize', sim_cfg.plot.axisFontSize);
     ax(6) = subplot(3,2,6);
     plot(T,fd.a_zh(:,1),T,fd.a_zh(:,2),T,fd.a_zh(:,3));
     ylabel('F_{zh} [kN/kg]', 'fontSize', sim_cfg.plot.axisFontSize);
-    xlabel('Time [day]', 'fontSize', sim_cfg.plot.axisFontSize);
+    xlabel('Time (UTC)', 'fontSize', sim_cfg.plot.axisFontSize);
     legend({'F_x','F_y','F_z'},'fontSize',sim_cfg.plot.legendFontSize, ...
         'location','Southeast')
     linkaxes(ax,'x');
@@ -58,9 +58,9 @@ function plot_pert_forces(T,fd,name,epoch,sim_cfg)
     figure(42)
     semilogy(T,fd.mag_2bp,'-k',T,fd.mag_drag,'-b',T,fd.mag_m3ba,'-c', ...
              T,fd.mag_s3ba,'-r',T,fd.mag_srp,'-g',T,fd.mag_zh,'-m');
-    title(['Forces Acting On ' name ' since MJD' epoch], ...
+    title(['Forces Acting On ' name ' since ' epoch], ...
         'fontsize', sim_cfg.plot.titleFontSize);
-    xlabel('Time [day]', 'fontSize', sim_cfg.plot.axisFontSize);
+    xlabel('Time (UTC)', 'fontSize', sim_cfg.plot.axisFontSize);
     ylabel('Force log([kN/kg])', 'fontSize', sim_cfg.plot.axisFontSize);
     legend({'Central','Drag','Moon Third Body','Sun Third Body', ...
         'Solar Radiation Pressure','Earth Zonal Harmonics'}, ...
