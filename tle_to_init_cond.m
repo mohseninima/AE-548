@@ -17,7 +17,7 @@ function init_cond = tle_to_init_cond(tle,sim_cfg,sys_cfg)
     % to 00h 01 Jan 2018)
     days_to_year_start = 365 * tle.epoch_year + leap_days;
     % Then calculate decimal JD and MJD of current epoch
-    init_cond.JD0 = sys_cfg.JDY2K + days_to_year_start + tle.epoch_day;
+    init_cond.JD0 = sys_cfg.JDY2K + days_to_year_start + tle.epoch_day - 1;
     init_cond.MJD0 = init_cond.JD0 - sys_cfg.diff_JD_MJD;
     % Finally, convert to seconds for each time
     init_cond.JD0s = init_cond.JD0 * sys_cfg.s_per_solar_day;
