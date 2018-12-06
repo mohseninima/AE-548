@@ -93,18 +93,7 @@ end
 
 % 3D Orbital Track Plot
 if sim_cfg.plot.track_3d
-    [XE, YE, ZE] = sphere(30); % Build reference sphere for Earth's surface
-    figure(31)
-    plot3(R_ECI(:,1),R_ECI(:,2),R_ECI(:,3),'-r');
-    hold on;
-    surf(XE*sys_cfg.earth.R, YE*sys_cfg.earth.R, ZE*sys_cfg.earth.R);
-    hold off;
-    axis(1.5*[-1e4 1e4 -1e4 1e4 -1e4 1e4]);
-    title(['Orbital Trajectory of ' tle.sat_num ' since MJD' epoch]);
-    xlabel('x_{ECI} [km]');
-    ylabel('y_{ECI} [km]');
-    zlabel('z_{ECI} [km]');
-    axis square
+    plot_track_3d(R_ECI,tle.sat_num,epoch,sys_cfg,sim_cfg)
 end
 
 % Force plotting
