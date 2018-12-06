@@ -136,6 +136,7 @@ if sim_cfg.plot.track_3d
     xlabel('x_{ECI} [km]');
     ylabel('y_{ECI} [km]');
     zlabel('z_{ECI} [km]');
+    axis square
 end
 
 % Force plotting
