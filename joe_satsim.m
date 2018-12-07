@@ -22,14 +22,14 @@ tle.n_rev_per_day = 15.14817118; %15.14814963;
 has_aero_tbx = false;
 has_map_tbx = false;
 
-licenses = license('inuse');
+licenses = ver;
 num_lics = length(licenses);
 
 for j = 1:num_lics
-    if strcmp(licenses(j).feature,'aerospace_toolbox')
+    if strcmp(licenses(j).Name,'Aerospace Toolbox')
         has_aero_tbx = true;
     end
-    if strcmp(licenses(j).feature,'map_toolbox')
+    if strcmp(licenses(j).Name,'Mapping Toolbox')
         has_map_tbx = true;
     end
 end

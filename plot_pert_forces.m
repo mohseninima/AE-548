@@ -52,7 +52,7 @@ function plot_pert_forces(T,fd,name,epoch,sim_cfg)
     legend({'F_x','F_y','F_z'},'fontSize',sim_cfg.plot.legendFontSize, ...
         'location','Southeast')
     linkaxes(ax,'x');
-    set(findall(gcf,'type','line'),'linewidth',2)
+    set(findall(gcf,'type','line'),'linewidth',1)
     
     % Comparison plot of all six forces
     figure(42)
@@ -65,5 +65,5 @@ function plot_pert_forces(T,fd,name,epoch,sim_cfg)
     legend({'Central','Drag','Moon Third Body','Sun Third Body', ...
         'Solar Radiation Pressure','Earth Zonal Harmonics'}, ...
         'location','Northeast','fontSize', sim_cfg.plot.legendFontSize)
-    set(findall(gcf,'type','line'),'linewidth',2)
+    set(findall(gcf,'type','line'),'linewidth',1)
 end

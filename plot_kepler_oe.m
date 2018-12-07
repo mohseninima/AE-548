@@ -64,6 +64,6 @@ function plot_kepler_oe(T,R,V,name,epoch,sys_cfg,sim_cfg)
     ylabel('\theta [deg]','fontSize',sim_cfg.plot.axisFontSize);
     xlabel('Time (UTC)','fontSize',sim_cfg.plot.axisFontSize);
     linkaxes(ax,'x');
-    set(findall(gcf,'type','line'),'linewidth',2)
+    set(findall(gcf,'type','line'),'linewidth',1)
 end
     
