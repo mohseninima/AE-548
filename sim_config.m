@@ -13,7 +13,7 @@ function sim_cfg = sim_config()
     sim_cfg.plot.pert_forces = true;  % Plot perturbation forces (4X)
     sim_cfg.plot.rv_eci = true;       % Plot pos and vel vectors (1X)
     sim_cfg.plot.sc_angle = true;     % Plot sc angle rel to gs zenith (5X)
-    sim_cfg.plot.track_2d = false;    % Plot Earth surface track in 2D (6X)
+    sim_cfg.plot.track_2d = true;     % Plot Earth surface track in 2D (6X)
     sim_cfg.plot.track_3d = true;     % Plot orbit around Earth in 3D (3X)
     
     % Plot Settings

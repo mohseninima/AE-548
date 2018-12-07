@@ -70,3 +70,14 @@ end
 viz_window_table = viz_window_generator(R_ECI, utc_tstamps, 'fxb');
 disp('Viz Windows')
 disp(viz_window_table)
+
+
+%% Plot Ground Track ======================================================
+if sim_cfg.plot.track_2d
+    if license('test', 'map_toolbox')
+        plot_track_2d(R_ECI, utc_tstamps, tle.sat_num)
+    else
+        warning(['You don''t have the mapping toolbox so the ground '... 
+          'track cannot be plotted. Please download the mapping toolbox.'])
+    end
+end
