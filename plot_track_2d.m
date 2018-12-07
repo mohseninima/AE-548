@@ -67,7 +67,7 @@ function plot_track_2d(r_sc_eci_list, utc_tstamp_list, sc_num)
     % Plot the satellite ground track on a Mercator projection.
     figure(61)
     landareas = shaperead('landareas.shp','UseGeoCoords',true);
-    axesm ('mercator', 'Frame', 'on', 'Grid', 'on');
+    axesm ('eqdcylin', 'Frame', 'on', 'Grid', 'on');
     geoshow(landareas,'FaceColor',[1 1 .5],'EdgeColor',[.6 .6 .6]);
     geoshow(LAT_DATA, LONG_DATA);
     
