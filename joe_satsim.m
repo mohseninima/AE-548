@@ -16,6 +16,24 @@ tle.om_deg = 53.8357; %55.7924;
 tle.M_deg = 307.5546; %305.6296;
 tle.n_rev_per_day = 15.14817118; %15.14814963;
 
+%% Check for Needed Toolboxes =============================================
+% Determine whether the user has licenses for the Aerospace Toolbox and
+% Mapping Toolbox in use.
+has_aero_tbx = false;
+has_map_tbx = false;
+
+licenses = license('inuse');
+num_lics = length(licenses);
+
+for j = 1:num_lics
+    if strcmp(licenses(j).feature,'aerospace_toolbox')
+        has_aero_tbx = true;
+    end
+    if strcmp(licenses(j).feature,'map_toolbox')
+        has_map_tbx = true;
+    end
+end
+
 %% Build and Run Simulation ===============================================
 % Create spacecraft, system, and simulation config structs from generation
 % scripts
@@ -27,11 +45,12 @@ sim_cfg = sim_config();
 init_cond = tle_to_init_cond(tle,sim_cfg,sys_cfg);
 
 % Check if aerospace toolbox is installed and swap drag models if needed
-if ~license('test', 'aerospace_toolbox')
-    disp('You don''t have the aerospace toolbox so the NRLMSISE-00 model is unavailable.')
-    disp('Defaulting to the Harris-Priester model')
+if (~has_aero_tbx && sim_cfg.pert.drag_adv)
+    warning(['You don''t have the aerospace toolbox so the' ...
+          ' NRLMSISE-00model is unavailable. Please download the'...
+          ' toolbox. Defaulting to the Harris-Priester model.']);
     sim_cfg.pert.drag = true;             % Include air drag in dynamics
-    sim_cfg.pert.drag_adv = false;        % Include NRLMSISE-00 air drag in dynamics
+    sim_cfg.pert.drag_adv = false;        % Remove NRLMSISE-00 air drag
 end
 
 % Run simulation (Output: [days] [km] [km/s])
@@ -74,7 +93,7 @@ disp(viz_window_table)
 
 %% Plot Ground Track ======================================================
 if sim_cfg.plot.track_2d
-    if license('test', 'map_toolbox')
+    if has_map_tbx
         plot_track_2d(R_ECI, utc_tstamps, tle.sat_num)
     else
         warning(['You don''t have the mapping toolbox so the ground '... 

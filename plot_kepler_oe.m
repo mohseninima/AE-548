@@ -26,14 +26,14 @@ function plot_kepler_oe(T,R,V,name,epoch,sys_cfg,sim_cfg)
     % Get length of data and convert position and velocity to elements
     data_length = length(T);
     A = zeros(data_length,6);
-    for i = 1:data_length
-        [A(i,1),A(i,2),A3,A4,A5,A6] = rveci2coe(R(i,:),V(i,:), ...
+    for j = 1:data_length
+        [A(j,1),A(j,2),A3,A4,A5,A6] = rveci2coe(R(j,:),V(j,:), ...
                                                 sys_cfg.earth.mu);
         % Plot angles in degrees
-        A(i,3) = A3 * sys_cfg.deg_per_rad;
-        A(i,4) = A4 * sys_cfg.deg_per_rad;
-        A(i,5) = A5 * sys_cfg.deg_per_rad;
-        A(i,6) = A6 * sys_cfg.deg_per_rad;
+        A(j,3) = A3 * sys_cfg.deg_per_rad;
+        A(j,4) = A4 * sys_cfg.deg_per_rad;
+        A(j,5) = A5 * sys_cfg.deg_per_rad;
+        A(j,6) = A6 * sys_cfg.deg_per_rad;
     end
     
     % Plot semi-major axis, eccentricity, inclination, RAAN, argper, and
